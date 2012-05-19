@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Customizing Json.Net";
+}
+@model IEnumerable<MvcJson.Net.Models.Customer>
+           
+<h2>Customers</h2>
+<a class="filter" href="/">All Customers</a> |
+<a class="filter" href="?preferred=true">Preferred Only</a>
+<div class="list">
+    @foreach (var cust in Model)
+    {
+        if (cust.Preferred)
+        { 
+            <div>@cust.Name <strong>Preferred</strong></div>
+        }
+        else
+        {
+            <div>@cust.Name</div>            
+        }
+    }
+</div>
+
+<script type="text/javascript">
+    $('a.filter').on('click', function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: (e.currentTarget).href,
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            success: function (data) {
+                var list = $('.list').empty();
+                list.append(render(data.items || data));
+            }
+        });
+    });
+
+    function render(data) {
+        var buffer = [];
+        $.each(data, function (index, value) {
+            if (value.preferred) {
+                buffer.push('<div>' + value.name + ' <strong>Preferred</strong></div>');
+            } else {
+                buffer.push('<div>' + value.name + '</div>');
+            }
+        });
+        return buffer.join('');
+    }
+
+</script>
