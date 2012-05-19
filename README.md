@@ -1,4 +1,5 @@
 MvcJson.Net
 ===========
 
-Sample project providing better defaults for Newtonsoft Json.Net library
+ASP.NET MVC project with better defaults for Newtonsoft Json.Net library
+
