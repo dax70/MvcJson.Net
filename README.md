@@ -12,7 +12,7 @@ The code usage is seamless with the added benefit of integrating Json.Net and be
 ```CSharp
 public ActionResult Index()
 {
-    var custs = Customer.GetAll(exp);
+    var custs = Customer.GetAll();
     if (Request.IsAjaxRequest())
     {
         return Json(custs);
