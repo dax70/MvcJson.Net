@@ -8,12 +8,11 @@ This exploit has being well covered by many others, with a good summary provided
 [Phil Haack](http://haacked.com/) found here: [Json hijacking](http://haacked.com/archive/2009/06/25/json-hijacking.aspx).
 
 ## Usage
-The beauty is that your code can remain the same as what you're currently doing, but now you are 
+The code usage is seamless with the added benefit of integrating Json.Net and being safe from the security exploit.
 ```CSharp
 public ActionResult Index()
 {
     var custs = Customer.GetAll(exp);
-
     if (Request.IsAjaxRequest())
     {
         return Json(custs);
